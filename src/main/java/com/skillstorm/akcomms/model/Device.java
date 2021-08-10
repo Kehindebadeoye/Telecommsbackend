@@ -24,10 +24,11 @@ public class Device {
 	@NotBlank
 	private String name;
 	
-	@OneToOne
+	@Column
 	@NotBlank
 	private DataPlan dataplan;
 	
+	@Column
 	@Min(value = 0, message = "Price is more than one")
 	private Double price;
 	
@@ -35,7 +36,7 @@ public class Device {
 	@Pattern(regexp = "^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}$")
 	private int number;
 	
-	@OneToOne
+
 	private User user;
 	
 	public Device() {
