@@ -1,12 +1,41 @@
 package com.skillstorm.akcomms.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+
+
+@Entity
+@Table
 public class Device {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
+	@Column
+	@NotBlank
 	private String name;
+	
+	@OneToOne
+	@NotBlank
 	private DataPlan dataplan;
+	
+	@Min(value = 0, message = "Price is more than one")
 	private Double price;
+	
+	@NotBlank
+	@Pattern(regexp = "^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}$")
 	private int number;
+	
+	@OneToOne
 	private User user;
 	
 	public Device() {

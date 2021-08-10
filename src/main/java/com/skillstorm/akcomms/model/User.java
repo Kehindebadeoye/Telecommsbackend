@@ -2,14 +2,38 @@ package com.skillstorm.akcomms.model;
 
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
+@Entity
+@Table
 public class User {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int cid;
+	
+	@Column
+	@NotBlank
 	private String username;
+	
+	@Column
 	private String password;
 	private List<Device> device;
+	
+	@Email
 	private String email;
 	private String mailingAddress;
+	
+	@NotBlank
+	@Pattern(regexp = "^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}$")
 	private int number;
 	private List<DataPlan> DataPlan;
 	
