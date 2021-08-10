@@ -12,19 +12,19 @@ public class DataPlanImpl implements Idataplan{
 	@Override
 	public double calculateUnlimitedStarter(double price) {
 	
-		return price * DataPlan.UNLIMITEDSTARTER;
+		return price + DataPlan.UNLIMITEDSTARTER;
 	}
 
 	@Override
 	public double calculateUnlimitedExtra(double price) {
 		// TODO Auto-generated method stub
-		return price * DataPlan.UNLIMITEDEXTRA;
+		return price + DataPlan.UNLIMITEDEXTRA;
 	}
 
 	@Override
 	public double calculateUnlimitedElite(double price) {
 		// TODO Auto-generated method stub
-		return price * DataPlan.UNLIMITEDELITE;
+		return price + DataPlan.UNLIMITEDELITE;
 	}
 
 }

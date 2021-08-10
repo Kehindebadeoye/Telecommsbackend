@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -26,6 +27,8 @@ public class User {
 	
 	@Column
 	private String password;
+	
+	@OneToMany(mappedBy = "user")
 	private List<Device> device;
 	
 	@Email
@@ -35,6 +38,8 @@ public class User {
 	@NotBlank
 	@Pattern(regexp = "^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}$")
 	private int number;
+	
+	@OneToMany(mappedBy = "user")
 	private List<DataPlan> DataPlan;
 	
 	
@@ -43,30 +48,26 @@ public class User {
 	}
 
 
-	public User(int cid, String username, String password, List<Device> device, String email, String mailingAddress,
-			int number, List<com.skillstorm.akcomms.model.DataPlan> dataPlan) {
+	public User(int cid, String username, String password, String email, String mailingAddress,
+			int number) {
 		super();
 		this.cid = cid;
 		this.username = username;
 		this.password = password;
-		this.device = device;
 		this.email = email;
 		this.mailingAddress = mailingAddress;
 		this.number = number;
-		DataPlan = dataPlan;
 	}
 
 
-	public User(String username, String password, List<Device> device, String email, String mailingAddress, int number,
-			List<com.skillstorm.akcomms.model.DataPlan> dataPlan) {
+	public User(String username, String password, String email, String mailingAddress, int number) {
 		super();
 		this.username = username;
 		this.password = password;
-		this.device = device;
 		this.email = email;
 		this.mailingAddress = mailingAddress;
 		this.number = number;
-		DataPlan = dataPlan;
+	
 	}
 
 
@@ -152,9 +153,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [cid=" + cid + ", username=" + username + ", password=" + password + ", device=" + device
-				+ ", email=" + email + ", mailingAddress=" + mailingAddress + ", number=" + number + ", DataPlan="
-				+ DataPlan + "]";
+		return "User [cid=" + cid + ", username=" + username + ", password=" + password + ", email=" + email + ", mailingAddress=" + mailingAddress + ", number=" + number + "]";
 	}
 	
 	

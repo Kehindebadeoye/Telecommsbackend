@@ -5,6 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
@@ -24,9 +27,9 @@ public class Device {
 	@NotBlank
 	private String name;
 	
-	@Column
-	@NotBlank
-	private DataPlan dataplan;
+//	@Column
+//	@NotBlank
+//	private DataPlan dataplan;
 	
 	@Column
 	@Min(value = 0, message = "Price is more than one")
@@ -36,7 +39,8 @@ public class Device {
 	@Pattern(regexp = "^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}$")
 	private int number;
 	
-
+	@ManyToOne
+	@JoinColumn(name="USER_ID")
 	private User user;
 	
 	public Device() {
@@ -47,7 +51,7 @@ public class Device {
 		super();
 		this.id = id;
 		this.name = name;
-		this.dataplan = dataplan;
+//		this.dataplan = dataplan;
 		this.price = price;
 		this.number = number;
 		this.user = user;
@@ -56,7 +60,7 @@ public class Device {
 	public Device(String name, DataPlan dataplan, Double price, int number, User user) {
 		super();
 		this.name = name;
-		this.dataplan = dataplan;
+//		this.dataplan = dataplan;
 		this.price = price;
 		this.number = number;
 		this.user = user;
@@ -78,13 +82,13 @@ public class Device {
 		this.name = name;
 	}
 
-	public DataPlan getDataplan() {
-		return dataplan;
-	}
-
-	public void setDataplan(DataPlan dataplan) {
-		this.dataplan = dataplan;
-	}
+//	public DataPlan getDataplan() {
+//		return dataplan;
+//	}
+//
+//	public void setDataplan(DataPlan dataplan) {
+//		this.dataplan = dataplan;
+//	}
 
 	public Double getPrice() {
 		return price;
@@ -112,7 +116,7 @@ public class Device {
 
 	@Override
 	public String toString() {
-		return "Device [id=" + id + ", name=" + name + ", dataplan=" + dataplan + ", price=" + price + ", number="
+		return "Device [id=" + id + ", name=" + name + ", dataplan="  + ", price=" + price + ", number="
 				+ number + ", user=" + user + "]";
 	}
 
