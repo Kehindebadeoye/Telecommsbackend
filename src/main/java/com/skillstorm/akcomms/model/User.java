@@ -35,9 +35,9 @@ public class User {
 	private String email;
 	private String mailingAddress;
 	
-	@NotBlank
-	@Pattern(regexp = "^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}$")
-	private int number;
+//	@NotBlank
+//	@Pattern(regexp = "^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}$")
+//	private long number;
 	
 	@OneToMany(mappedBy = "user")
 	private List<DataPlan> DataPlan;
@@ -48,28 +48,15 @@ public class User {
 	}
 
 
-	public User(int cid, String username, String password, String email, String mailingAddress,
-			int number) {
+	public User(int cid, String username, String password, String email, String mailingAddress) {
 		super();
 		this.cid = cid;
 		this.username = username;
 		this.password = password;
 		this.email = email;
 		this.mailingAddress = mailingAddress;
-		this.number = number;
+//		this.number = number;
 	}
-
-
-	public User(String username, String password, String email, String mailingAddress, int number) {
-		super();
-		this.username = username;
-		this.password = password;
-		this.email = email;
-		this.mailingAddress = mailingAddress;
-		this.number = number;
-	
-	}
-
 
 	public int getCid() {
 		return cid;
@@ -131,14 +118,14 @@ public class User {
 	}
 
 
-	public int getNumber() {
-		return number;
-	}
-
-
-	public void setNumber(int number) {
-		this.number = number;
-	}
+//	public long getNumber() {
+//		return number;
+//	}
+//
+//
+//	public void setNumber(int number) {
+//		this.number = number;
+//	}
 
 
 	public List<DataPlan> getDataPlan() {
@@ -153,7 +140,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [cid=" + cid + ", username=" + username + ", password=" + password + ", email=" + email + ", mailingAddress=" + mailingAddress + ", number=" + number + "]";
+		return "User [cid=" + cid + ", username=" + username + ", password=" + password + ", email=" + email + ", mailingAddress=" + mailingAddress  + "]";
 	}
 	
 	

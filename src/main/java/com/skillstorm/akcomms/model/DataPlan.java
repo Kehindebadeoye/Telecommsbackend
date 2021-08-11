@@ -19,13 +19,18 @@ public class DataPlan {
 	public static final double UNLIMITEDEXTRA = 40.00;
 	public static final double UNLIMITEDELITE = 50.00;
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	
 	@ManyToOne
 	@JoinColumn(name="USER_ID")
 	private User user;
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	
+	
+	@Column
+	private DataPlanTypes dataPlanType;
 	
 //	@Column
 //	private List<Device> device;
@@ -34,44 +39,52 @@ public class DataPlan {
 		super();
 	}
 
-	public DataPlan(User user, int id) {
-		super();
-		this.user = user;
-		this.id = id;
-	}
+public DataPlan(User user, DataPlanTypes dataPlanType) {
+	super();
+	this.user = user;
+	this.dataPlanType = dataPlanType;
+}
 
-	public User getUser() {
-		return user;
-	}
+public User getUser() {
+	return user;
+}
 
-	public void setUser(User user) {
-		this.user = user;
-	}
+public void setUser(User user) {
+	this.user = user;
+}
 
-	public int getId() {
-		return id;
-	}
+public int getId() {
+	return id;
+}
 
-	public void setId(int id) {
-		this.id = id;
-	}
+public void setId(int id) {
+	this.id = id;
+}
 
-	public static double getUnlimitedstarter() {
-		return UNLIMITEDSTARTER;
-	}
+public DataPlanTypes getDataPlanType() {
+	return dataPlanType;
+}
 
-	public static double getUnlimitedextra() {
-		return UNLIMITEDEXTRA;
-	}
+public void setDataPlanType(DataPlanTypes dataPlanType) {
+	this.dataPlanType = dataPlanType;
+}
 
-	public static double getUnlimitedelite() {
-		return UNLIMITEDELITE;
-	}
+public static double getUnlimitedstarter() {
+	return UNLIMITEDSTARTER;
+}
 
-	@Override
-	public String toString() {
-		return "DataPlan [user=" + user + ", id=" + id + "]";
-	}
+public static double getUnlimitedextra() {
+	return UNLIMITEDEXTRA;
+}
+
+public static double getUnlimitedelite() {
+	return UNLIMITEDELITE;
+}
+
+@Override
+public String toString() {
+	return "DataPlan [user=" + user + ", id=" + id + ", dataPlanType=" + dataPlanType + "]";
+}
 
 	
 	

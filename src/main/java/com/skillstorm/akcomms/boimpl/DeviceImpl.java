@@ -1,7 +1,10 @@
 package com.skillstorm.akcomms.boimpl;
 
+import org.springframework.stereotype.Service;
+
 import com.skillstorm.akcomms.model.Device;
 
+@Service
 public class DeviceImpl {
 	
 	public Device addDevice(Device device) {

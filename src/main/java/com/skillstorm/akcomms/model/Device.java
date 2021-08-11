@@ -37,7 +37,7 @@ public class Device {
 	
 	@NotBlank
 	@Pattern(regexp = "^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}$")
-	private int number;
+	private String number;
 	
 	@ManyToOne
 	@JoinColumn(name="USER_ID")
@@ -47,17 +47,7 @@ public class Device {
 		super();
 	}
 
-	public Device(int id, String name, DataPlan dataplan, Double price, int number, User user) {
-		super();
-		this.id = id;
-		this.name = name;
-//		this.dataplan = dataplan;
-		this.price = price;
-		this.number = number;
-		this.user = user;
-	}
-
-	public Device(String name, DataPlan dataplan, Double price, int number, User user) {
+	public Device(String name, Double price, String number, User user) {
 		super();
 		this.name = name;
 //		this.dataplan = dataplan;
@@ -98,11 +88,11 @@ public class Device {
 		this.price = price;
 	}
 
-	public int getNumber() {
+	public String getNumber() {
 		return number;
 	}
 
-	public void setNumber(int number) {
+	public void setNumber(String number) {
 		this.number = number;
 	}
 
@@ -116,7 +106,7 @@ public class Device {
 
 	@Override
 	public String toString() {
-		return "Device [id=" + id + ", name=" + name + ", dataplan="  + ", price=" + price + ", number="
+		return "Device [id=" + id + ", name=" + name +  ", price=" + price + ", number="
 				+ number + ", user=" + user + "]";
 	}
 
