@@ -2,6 +2,7 @@ package com.skillstorm.akcomms.model;
 
 import java.util.List;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,6 +13,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table
@@ -29,6 +32,11 @@ public class User {
 	private String password;
 	
 	@OneToMany(mappedBy = "user")
+	@JsonIgnore
+	private List<DataPlan> dataPlan;
+	
+	@OneToMany(mappedBy = "user")
+	@JsonIgnore
 	private List<Device> device;
 	
 	@Email
@@ -39,8 +47,7 @@ public class User {
 //	@Pattern(regexp = "^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}$")
 //	private long number;
 	
-	@OneToMany(mappedBy = "user")
-	private List<DataPlan> DataPlan;
+	
 	
 	
 	public User() {
@@ -129,12 +136,12 @@ public class User {
 
 
 	public List<DataPlan> getDataPlan() {
-		return DataPlan;
+		return dataPlan;
 	}
 
 
 	public void setDataPlan(List<DataPlan> dataPlan) {
-		DataPlan = dataPlan;
+		this.dataPlan = dataPlan;
 	}
 
 

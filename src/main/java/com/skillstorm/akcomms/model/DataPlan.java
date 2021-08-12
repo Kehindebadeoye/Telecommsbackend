@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table (name="DATA_PLAN")
@@ -24,8 +27,9 @@ public class DataPlan {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@ManyToOne
+	@ManyToOne(fetch =FetchType.LAZY)
 	@JoinColumn(name="USER_ID")
+	@JsonIgnore
 	private User user;
 	
 	
@@ -33,8 +37,9 @@ public class DataPlan {
 	@Column
 	private DataPlanTypes dataPlanType;
 	
-	@Column
-	@OneToMany (mappedBy="dataplan")
+//	@Column
+	@OneToMany (mappedBy= "dataplan")
+	@JsonIgnore
 	private List<Device> device;
 
 	public DataPlan() {

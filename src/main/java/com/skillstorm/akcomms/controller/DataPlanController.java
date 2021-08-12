@@ -1,6 +1,7 @@
 package com.skillstorm.akcomms.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,12 +20,25 @@ import com.skillstorm.akcomms.data.DataPlanRepository;
 import com.skillstorm.akcomms.model.DataPlan;
 import com.skillstorm.akcomms.model.DataPlanTypes;
 
+
 @RestController
 @RequestMapping("/dataplans")
 public class DataPlanController {
 	
 	@Autowired
 	DataPlanRepository dataPlanRepository;
+	
+	@GetMapping("/dataplan/{id}")
+	public ResponseEntity<DataPlan> findById(@PathVariable("id") Integer id){
+		if (id != null) {
+			Optional<DataPlan> optional = dataPlanRepository.findById(id);
+			return optional.isPresent() ? ResponseEntity.ok(optional.get()) : ResponseEntity.badRequest().build();
+			
+		}
+		return new ResponseEntity<DataPlan>(HttpStatus.BAD_REQUEST);
+		
+		
+	}
 	
 	@PostMapping("/dataplan")
 	public ResponseEntity<DataPlan> saveDevice(DataPlan dataPlan){

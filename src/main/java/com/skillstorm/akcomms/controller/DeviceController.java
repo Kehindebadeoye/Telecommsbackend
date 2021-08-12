@@ -42,6 +42,7 @@ public class DeviceController {
 		if (id != null) {
 			Optional<Device> optional = deviceRepository.findById(id);
 			return optional.isPresent() ? ResponseEntity.ok(optional.get()) : ResponseEntity.badRequest().build();
+			
 		}
 		return new ResponseEntity<Device>(HttpStatus.BAD_REQUEST);
 		
