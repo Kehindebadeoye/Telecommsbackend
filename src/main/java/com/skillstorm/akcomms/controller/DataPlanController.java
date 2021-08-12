@@ -41,14 +41,14 @@ public class DataPlanController {
 		return null;	
 	}
 	
-	@GetMapping
-	public ResponseEntity <List<DataPlan>> finAllDevices(@RequestParam(value = "deviceprice", required = false) DataPlanTypes dataPlanType) {
-		if(dataPlanType != null) {
-			return new ResponseEntity<>(dataPlanRepository.findByOrderByDataPlanType(dataPlanType), HttpStatus.OK);
-		}
-		return ResponseEntity.ok(dataPlanRepository.findAll());
-		
-	}
+//	@GetMapping
+//	public ResponseEntity <List<DataPlan>> finAllDevices(@RequestParam(value = "deviceprice", required = false) DataPlanTypes dataPlanType) {
+//		if(dataPlanType != null) {
+//			return new ResponseEntity<>(dataPlanRepository.findByOrderByDataPlanType(dataPlanType), HttpStatus.OK);
+//		}
+//		return ResponseEntity.ok(dataPlanRepository.findAll());
+//		
+//	}
 	
 	@DeleteMapping ("/dataplan/{id}")
 	public ResponseEntity<Void> deletePlan(@PathVariable("id") Integer id){

@@ -1,6 +1,7 @@
 package com.skillstorm.akcomms.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,12 +29,22 @@ public class DeviceController {
 	@Autowired
 	DeviceRepository deviceRepository;
 	
-	@GetMapping
-	public ResponseEntity <List<Device>> finAllDevices(@RequestParam(value = "deviceprice", required = false) Double price) {
-		if(price != null) {
-			return new ResponseEntity<>(deviceRepository.findByOrderByPrice(price), HttpStatus.OK);
+//	@GetMapping
+//	public ResponseEntity <List<Device>> finAllDevices(@RequestParam(value = "deviceprice", required = false) Double price) {
+//		if(price != null) {
+//			return new ResponseEntity<>(deviceRepository.findByOrderByPrice(price), HttpStatus.OK);
+//		}
+//		return ResponseEntity.ok(deviceRepository.findAll());
+//		
+//	}
+	@GetMapping("/device/{id}")
+	public ResponseEntity<Device> findById(@PathVariable("id") Integer id){
+		if (id != null) {
+			Optional<Device> optional = deviceRepository.findById(id);
+			return optional.isPresent() ? ResponseEntity.ok(optional.get()) : ResponseEntity.badRequest().build();
 		}
-		return ResponseEntity.ok(deviceRepository.findAll());
+		return new ResponseEntity<Device>(HttpStatus.BAD_REQUEST);
+		
 		
 	}
 	@PostMapping("/device")

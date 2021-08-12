@@ -12,7 +12,7 @@ import com.skillstorm.akcomms.model.Device;
 @Repository
 public interface DataPlanRepository extends JpaRepository<DataPlan, Integer> {
 	
-	public List<DataPlan> findByOrderByDataPlanType(DataPlanTypes dataPlanType);
+//	public List<DataPlan> findByOrderByDataPlanType(DataPlanTypes dataPlanType);
 
 
 }

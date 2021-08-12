@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -32,59 +33,70 @@ public class DataPlan {
 	@Column
 	private DataPlanTypes dataPlanType;
 	
-//	@Column
-//	private List<Device> device;
+	@Column
+	@OneToMany (mappedBy="dataplan")
+	private List<Device> device;
 
 	public DataPlan() {
 		super();
 	}
 
-public DataPlan(User user, DataPlanTypes dataPlanType) {
-	super();
-	this.user = user;
-	this.dataPlanType = dataPlanType;
-}
+	public DataPlan(int id, User user, DataPlanTypes dataPlanType) {
+		super();
+		this.id = id;
+		this.user = user;
+		this.dataPlanType = dataPlanType;
+	}
 
-public User getUser() {
-	return user;
-}
+	public int getId() {
+		return id;
+	}
 
-public void setUser(User user) {
-	this.user = user;
-}
+	public void setId(int id) {
+		this.id = id;
+	}
 
-public int getId() {
-	return id;
-}
+	public User getUser() {
+		return user;
+	}
 
-public void setId(int id) {
-	this.id = id;
-}
+	public void setUser(User user) {
+		this.user = user;
+	}
 
-public DataPlanTypes getDataPlanType() {
-	return dataPlanType;
-}
+	public DataPlanTypes getDataPlanType() {
+		return dataPlanType;
+	}
 
-public void setDataPlanType(DataPlanTypes dataPlanType) {
-	this.dataPlanType = dataPlanType;
-}
+	public void setDataPlanType(DataPlanTypes dataPlanType) {
+		this.dataPlanType = dataPlanType;
+	}
 
-public static double getUnlimitedstarter() {
-	return UNLIMITEDSTARTER;
-}
+	public List<Device> getDevice() {
+		return device;
+	}
 
-public static double getUnlimitedextra() {
-	return UNLIMITEDEXTRA;
-}
+	public void setDevice(List<Device> device) {
+		this.device = device;
+	}
 
-public static double getUnlimitedelite() {
-	return UNLIMITEDELITE;
-}
+	public static double getUnlimitedstarter() {
+		return UNLIMITEDSTARTER;
+	}
 
-@Override
-public String toString() {
-	return "DataPlan [user=" + user + ", id=" + id + ", dataPlanType=" + dataPlanType + "]";
-}
+	public static double getUnlimitedextra() {
+		return UNLIMITEDEXTRA;
+	}
+
+	public static double getUnlimitedelite() {
+		return UNLIMITEDELITE;
+	}
+
+	@Override
+	public String toString() {
+		return "DataPlan [id=" + id + ", user=" + user + ", dataPlanType=" + dataPlanType + "]";
+	}
+
 
 	
 	

@@ -27,9 +27,10 @@ public class Device {
 	@NotBlank
 	private String name;
 	
-//	@Column
-//	@NotBlank
-//	private DataPlan dataplan;
+
+	@ManyToOne
+	@JoinColumn (name = "DATA_PLAN_ID")
+	private DataPlan dataplan;
 	
 	@Column
 	@Min(value = 0, message = "Price is more than one")
@@ -47,10 +48,10 @@ public class Device {
 		super();
 	}
 
-	public Device(String name, Double price, String number, User user) {
+	public Device(String name, Double price, String number, User user, DataPlan dataplan) {
 		super();
 		this.name = name;
-//		this.dataplan = dataplan;
+		this.dataplan = dataplan;
 		this.price = price;
 		this.number = number;
 		this.user = user;
@@ -72,13 +73,13 @@ public class Device {
 		this.name = name;
 	}
 
-//	public DataPlan getDataplan() {
-//		return dataplan;
-//	}
-//
-//	public void setDataplan(DataPlan dataplan) {
-//		this.dataplan = dataplan;
-//	}
+	public DataPlan getDataplan() {
+		return dataplan;
+	}
+
+	public void setDataplan(DataPlan dataplan) {
+		this.dataplan = dataplan;
+	}
 
 	public Double getPrice() {
 		return price;
@@ -107,7 +108,7 @@ public class Device {
 	@Override
 	public String toString() {
 		return "Device [id=" + id + ", name=" + name +  ", price=" + price + ", number="
-				+ number + ", user=" + user + "]";
+				+ number + ", user=" + user + ", dataplan=" + dataplan + "]";
 	}
 
 	

@@ -11,6 +11,6 @@ import com.skillstorm.akcomms.model.Device;
 @Repository
 public interface DeviceRepository extends JpaRepository<Device, Integer> {
 	
-	public List<Device> findByOrderByPrice(double price);
+//	public List<Device> findByOrderByPrice(double price);
 
 }

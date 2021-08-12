@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.skillstorm.akcomms.data.DeviceRepository;
 import com.skillstorm.akcomms.data.UserRepository;
+import com.skillstorm.akcomms.model.DataPlan;
 import com.skillstorm.akcomms.model.Device;
 import com.skillstorm.akcomms.model.User;
 
@@ -46,6 +47,7 @@ public class UserController {
 		return new ResponseEntity<User>(HttpStatus.BAD_REQUEST);
 	}
 	
+	@GetMapping
 	public ResponseEntity<List<User>> findAll(User user){
 		
 		return ResponseEntity.ok(userRepository.findAll());
