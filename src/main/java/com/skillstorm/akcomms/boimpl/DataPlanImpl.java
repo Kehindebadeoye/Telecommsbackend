@@ -10,21 +10,38 @@ import com.skillstorm.akcomms.model.DataPlan;
 public class DataPlanImpl implements Idataplan{
 
 	@Override
-	public double calculateUnlimitedStarter(double price) {
+	public double calculateUnlimitedStarter(double totalPrice) {
 	
-		return price + DataPlan.UNLIMITEDSTARTER;
+		return totalPrice + DataPlan.UNLIMITEDSTARTER;
 	}
 
 	@Override
-	public double calculateUnlimitedExtra(double price) {
+	public double calculateUnlimitedExtra(double totalPrice) {
 		// TODO Auto-generated method stub
-		return price + DataPlan.UNLIMITEDEXTRA;
+		return totalPrice + DataPlan.UNLIMITEDEXTRA;
 	}
 
 	@Override
-	public double calculateUnlimitedElite(double price) {
+	public double calculateUnlimitedElite(double totalPrice) {
 		// TODO Auto-generated method stub
-		return price + DataPlan.UNLIMITEDELITE;
+		return totalPrice + DataPlan.UNLIMITEDELITE;
 	}
-
+	
+	public void planLogic(String dataplan) {
+		switch(dataplan) {
+		case "UNLIMITEDSTARTER": {
+			//add one device only
+			break;
+		}
+		case "UNLIMITEDEXTRA": {
+			//limit device to 2
+			break;
+		}
+		case "UNLIMITEDELITE" : {
+			// limit device to 3
+		}
+		break;
+		}
+		
+	}
 }
