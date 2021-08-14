@@ -36,6 +36,7 @@ public class Device {
 
 	@ManyToOne//(fetch =FetchType.LAZY)
 	@JoinColumn (name = "DATA_PLAN_ID")
+	@JsonIgnore
 	private DataPlan dataplan;
 	
 	@Column
@@ -44,6 +45,7 @@ public class Device {
 	
 	@NotBlank
 	@Pattern(regexp = "^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}$")
+	@JsonIgnore
 	private String number;
 	
 	@ManyToOne//(fetch =FetchType.LAZY)
@@ -51,17 +53,23 @@ public class Device {
 	@JsonIgnore
 	private User user;
 	
+	private String url;
+	
+	private String description;
+	
 	public Device() {
 		super();
 	}
 
-	public Device(String name, Double price, String number, User user, DataPlan dataplan) {
+	public Device(String name, Double price, String number, User user, DataPlan dataplan, String url, String description) {
 		super();
 		this.name = name;
 		this.dataplan = dataplan;
 		this.price = price;
 		this.number = number;
 		this.user = user;
+		this.url = url;
+		this.description = description;
 	}
 
 	public int getId() {
@@ -112,10 +120,27 @@ public class Device {
 		this.user = user;
 	}
 
+	
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescripion(String description) {
+		this.description = description;
+	}
+
 	@Override
 	public String toString() {
 		return "Device [id=" + id + ", name=" + name +  ", price=" + price + ", number="
-				+ number + ", user=" + user + ", dataplan=" + dataplan + "]";
+				+ number + ", user=" + user + ", dataplan=" + dataplan + ", url=" + url + ", description =" + description + "]";
 		
 	}
 
