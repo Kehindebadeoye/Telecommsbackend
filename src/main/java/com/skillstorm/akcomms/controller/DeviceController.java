@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,6 +25,7 @@ import com.skillstorm.akcomms.model.User;
 
 @RestController
 @RequestMapping ("/devices")
+@CrossOrigin(origins = "*")
 public class DeviceController {
 	
 	@Autowired
@@ -37,6 +39,14 @@ public class DeviceController {
 //		return ResponseEntity.ok(deviceRepository.findAll());
 //		
 //	}
+	
+	@GetMapping
+	public ResponseEntity<List<Device>> findAll(Device device){
+		
+		return ResponseEntity.ok(deviceRepository.findAll());
+		
+	}
+	
 	@GetMapping("/device/{id}")
 	public ResponseEntity<Device> findById(@PathVariable("id") Integer id){
 		if (id != null) {
@@ -45,6 +55,30 @@ public class DeviceController {
 			
 		}
 		return new ResponseEntity<Device>(HttpStatus.BAD_REQUEST);
+		
+		
+	}
+	
+	@GetMapping("device/user")
+	public ResponseEntity <List<Device>> findByUserId(@RequestParam(value = "cid", required = true) Integer user){
+		if (user != null) {
+			return new ResponseEntity<List<Device>>(deviceRepository.findAllByUserCid(user), HttpStatus.OK);
+			
+			
+		}
+		return ResponseEntity.ok(deviceRepository.findAll());
+		
+		
+	}
+	
+	@GetMapping("device/number")
+	public ResponseEntity <List<Device>> findByNumber(@RequestParam(value = "number", required = true) String number){
+		if (number != null) {
+			return new ResponseEntity<List<Device>>(deviceRepository.findAllByNumber(number), HttpStatus.OK);
+			
+			
+		}
+		return ResponseEntity.ok(deviceRepository.findAll());
 		
 		
 	}

@@ -19,12 +19,16 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table (name="DATA_PLAN")
 public class DataPlan {
-	public static final double UNLIMITEDSTARTER = 35.00;
-	public static final double UNLIMITEDEXTRA = 40.00;
-	public static final double UNLIMITEDELITE = 50.00;
+//	public static final double UNLIMITEDSTARTER = 35.00;
+//	public static final double UNLIMITEDEXTRA = 40.00;
+//	public static final double UNLIMITEDELITE = 50.00;
+	@Column
+	private String name;
+	@Column
+	private int amount;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
 	@ManyToOne(fetch =FetchType.LAZY)
@@ -34,74 +38,97 @@ public class DataPlan {
 	
 	
 	
-	@Column
-	private DataPlanTypes dataPlanType;
+//	@Column
+//	private DataPlanTypes dataPlanType;
 	
 //	@Column
 	@OneToMany (mappedBy= "dataplan")
-	@JsonIgnore
+//	@JsonIgnore
 	private List<Device> device;
 
 	public DataPlan() {
 		super();
 	}
 
-	public DataPlan(int id, User user, DataPlanTypes dataPlanType) {
+
+
+	public DataPlan(String name, int amount, int id) {
 		super();
+		this.name = name;
+		this.amount = amount;
 		this.id = id;
-		this.user = user;
-		this.dataPlanType = dataPlanType;
 	}
+
+
+
+	public String getName() {
+		return name;
+	}
+
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+
+	public int getAmount() {
+		return amount;
+	}
+
+
+
+	public void setAmount(int amount) {
+		this.amount = amount;
+	}
+
+
 
 	public int getId() {
 		return id;
 	}
 
+
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
+
 
 	public User getUser() {
 		return user;
 	}
 
+
+
 	public void setUser(User user) {
 		this.user = user;
 	}
 
-	public DataPlanTypes getDataPlanType() {
-		return dataPlanType;
-	}
 
-	public void setDataPlanType(DataPlanTypes dataPlanType) {
-		this.dataPlanType = dataPlanType;
-	}
 
 	public List<Device> getDevice() {
 		return device;
 	}
 
+
+
 	public void setDevice(List<Device> device) {
 		this.device = device;
 	}
 
-	public static double getUnlimitedstarter() {
-		return UNLIMITEDSTARTER;
-	}
 
-	public static double getUnlimitedextra() {
-		return UNLIMITEDEXTRA;
-	}
-
-	public static double getUnlimitedelite() {
-		return UNLIMITEDELITE;
-	}
 
 	@Override
 	public String toString() {
-		return "DataPlan [id=" + id + ", user=" + user + ", dataPlanType=" + dataPlanType + "]";
+		return "DataPlan [name=" + name + ", amount=" + amount + ", id=" + id + "]";
 	}
 
+
+
+	
 
 	
 	

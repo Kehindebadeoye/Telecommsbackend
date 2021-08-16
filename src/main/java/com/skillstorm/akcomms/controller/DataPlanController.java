@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.skillstorm.akcomms.data.DataPlanRepository;
 import com.skillstorm.akcomms.model.DataPlan;
 import com.skillstorm.akcomms.model.DataPlanTypes;
+import com.skillstorm.akcomms.model.Device;
 
 
 @RestController
@@ -40,6 +41,13 @@ public class DataPlanController {
 		
 	}
 	
+	@GetMapping
+	public ResponseEntity<List<DataPlan>> findAll(DataPlan dataPlan){
+		
+		return ResponseEntity.ok(dataPlanRepository.findAll());
+		
+	}
+	
 	@PostMapping("/dataplan")
 	public ResponseEntity<DataPlan> saveDevice(DataPlan dataPlan){
 		DataPlan body = dataPlanRepository.save(dataPlan);
@@ -55,14 +63,22 @@ public class DataPlanController {
 		return null;	
 	}
 	
-//	@GetMapping
-//	public ResponseEntity <List<DataPlan>> finAllDevices(@RequestParam(value = "deviceprice", required = false) DataPlanTypes dataPlanType) {
-//		if(dataPlanType != null) {
-//			return new ResponseEntity<>(dataPlanRepository.findByOrderByDataPlanType(dataPlanType), HttpStatus.OK);
-//		}
-//		return ResponseEntity.ok(dataPlanRepository.findAll());
-//		
-//	}
+	@GetMapping("/dataplan/device")
+	public ResponseEntity <List<DataPlan>> finAllDevices(@RequestParam(value = "id", required = true) Integer device) {
+		if(device != null) {
+			return new ResponseEntity<>(dataPlanRepository.findAllByDeviceId(device), HttpStatus.OK);
+		}
+		return ResponseEntity.ok(dataPlanRepository.findAll());
+		
+	}
+	@GetMapping("/dataplan/user")
+	public ResponseEntity <List<DataPlan>> finAllUser(@RequestParam(value = "cid", required = true) Integer user) {
+		if(user != null) {
+			return new ResponseEntity<>(dataPlanRepository.findAllByUserCid(user), HttpStatus.OK);
+		}
+		return ResponseEntity.ok(dataPlanRepository.findAll());
+		
+	}
 	
 	@DeleteMapping ("/dataplan/{id}")
 	public ResponseEntity<Void> deletePlan(@PathVariable("id") Integer id){

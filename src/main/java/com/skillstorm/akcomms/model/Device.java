@@ -49,7 +49,7 @@ public class Device {
 	private String number;
 	
 	@ManyToOne//(fetch =FetchType.LAZY)
-	@JoinColumn(name="USER_ID")
+	@JoinColumn(name="user_id")
 	@JsonIgnore
 	private User user;
 	
