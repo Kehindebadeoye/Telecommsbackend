@@ -32,11 +32,11 @@ public class User {
 	private String password;
 	
 	@OneToMany(mappedBy = "user")
-	@JsonIgnore
+//	@JsonIgnore
 	private List<DataPlan> dataPlan;
 	
 	@OneToMany(mappedBy = "user")
-	@JsonIgnore
+//	@JsonIgnore
 	private List<Device> device;
 	
 	@Email
